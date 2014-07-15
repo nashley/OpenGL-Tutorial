@@ -1,7 +1,8 @@
 OpenGL-Tutorial
 ===============
 
-An _unofficial_ GLFW implementation of the official OpenGL tutorial, which can be found [here](http://www.glprogramming.com/red/)
+An _unofficial_ GLFW implementation of the official OpenGL tutorial, which can be found [here](http://www.glprogramming.com/red/).
+Also note that the above website is community based, but the tutorial itself seems to be official (albeit outdated).
 
 ##Warning
 This is not an official port; and some parts of the code may be incomplete, incorrect, or inefficient. That being said, please feel free to contribute changes or to let the developers know of pertinent issues.
