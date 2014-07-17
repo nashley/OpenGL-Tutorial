@@ -10,7 +10,7 @@ This is not an official port; and some parts of the code may be incomplete, inco
 ##Notes
 In order to run these programs, you will need to have GLFW and link it to the program(s) you wish to compile. Thankfully, pkg-config makes this relative simple; e.g., you would issue the following command to compile the first example:
 ```
-gcc `pkg-config --cflags glfw3` -o 1 1-1.c `pkg-config --static --libs glfw3`
+gcc `pkg-config --cflags glfw3` -o 1-1 1-1.c `pkg-config --static --libs glfw3`
 ```
 However, you will need to tell pkg-config where the GLFW library and header files reside if you choose not to install them. For example, if you have the base directory of GLFW one directory above the base directory of this project, you would tell pkg-config where to look for the relevant files like this:
 ```

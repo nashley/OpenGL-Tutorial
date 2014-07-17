@@ -28,7 +28,7 @@ static void error_callback(int error, const char* description){
 */
 static void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods){
 
-	if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
+	if(key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
 		glfwSetWindowShouldClose(window, GL_TRUE);
 }
 
@@ -39,14 +39,16 @@ void init(){
 
 	glfwSetErrorCallback(error_callback);
 
-	if (!glfwInit())
+	if(!glfwInit())
 		exit(EXIT_FAILURE);
 
 	window = glfwCreateWindow(640, 480, "Example 01-1", NULL, NULL);
-	if (!window){
+	if(!window){
 		glfwTerminate();
 		exit(EXIT_FAILURE);
 	}
+
+	glClearColor(0.0, 0.0, 0.0, 0.0);
 
 	glfwMakeContextCurrent(window);
 	glfwSetKeyCallback(window, key_callback);
@@ -57,16 +59,15 @@ void init(){
 */
 void draw(){
 
-	glClearColor (0.0, 0.0, 0.0, 0.0);
-	glClear (GL_COLOR_BUFFER_BIT);
-	glColor3f (1.0, 1.0, 1.0);
+	glClear(GL_COLOR_BUFFER_BIT);
+	glColor3f(1.0, 1.0, 1.0);
 	glOrtho(0.0, 1.0, 0.0, 1.0, -1.0, 1.0);
 
 	glBegin(GL_POLYGON);
-		glVertex3f (0.25, 0.25, 0.0);
-		glVertex3f (0.75, 0.25, 0.0);
-		glVertex3f (0.75, 0.75, 0.0);
-		glVertex3f (0.25, 0.75, 0.0);
+		glVertex3f(0.25, 0.25, 0.0);
+		glVertex3f(0.75, 0.25, 0.0);
+		glVertex3f(0.75, 0.75, 0.0);
+		glVertex3f(0.25, 0.75, 0.0);
 	glEnd();
 	glFlush();
 }
