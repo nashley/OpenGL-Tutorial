@@ -13,25 +13,51 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+GLFWwindow* window;
+
 static void error_callback(int error, const char* description){
+
 	fputs(description, stderr);
 }
 
 static void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods){
+
 	if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
 		glfwSetWindowShouldClose(window, GL_TRUE);
 }
 
-GLFWwindow* init(){
+void quit(){
 
-	GLFWwindow* window;
+	printf("Exiting...\n");
+	glfwDestroyWindow(window);
+	glfwTerminate();
+	exit(EXIT_SUCCESS);
+}
+
+void draw(){
+
+	glClearColor (0.0, 0.0, 0.0, 0.0);
+	glClear (GL_COLOR_BUFFER_BIT);
+	glColor3f (1.0, 1.0, 1.0);
+	glOrtho(0.0, 1.0, 0.0, 1.0, -1.0, 1.0);
+
+	glBegin(GL_POLYGON);
+		glVertex3f (0.25, 0.25, 0.0);
+		glVertex3f (0.75, 0.25, 0.0);
+		glVertex3f (0.75, 0.75, 0.0);
+		glVertex3f (0.25, 0.75, 0.0);
+	glEnd();
+	glFlush();
+}
+
+void init(){
 
 	glfwSetErrorCallback(error_callback);
 
 	if (!glfwInit())
 		exit(EXIT_FAILURE);
 
-	window = glfwCreateWindow(640, 480, "01-1", NULL, NULL);
+	window = glfwCreateWindow(640, 480, "Example 01-1", NULL, NULL);
 	if (!window){
 		glfwTerminate();
 		exit(EXIT_FAILURE);
@@ -39,34 +65,22 @@ GLFWwindow* init(){
 
 	glfwMakeContextCurrent(window);
 	glfwSetKeyCallback(window, key_callback);
-
-	return window;
 }
-
-int run(GLFWwindow* window){
-	
-	glClearColor (0.0, 0.0, 0.0, 0.0);
-	glClear (GL_COLOR_BUFFER_BIT);
-	glColor3f (1.0, 1.0, 1.0);
-	glOrtho(0.0, 1.0, 0.0, 1.0, -1.0, 1.0);
+/*
+	Loop the window
+*/
+int run(){
 
 	while(!glfwWindowShouldClose(window)){
-		glBegin(GL_POLYGON);
-			glVertex3f (0.25, 0.25, 0.0);
-			glVertex3f (0.75, 0.25, 0.0);
-			glVertex3f (0.75, 0.75, 0.0);
-			glVertex3f (0.25, 0.75, 0.0);
-		glEnd();
-		glFlush();
-
 		glfwSwapBuffers(window);
 		glfwPollEvents();
 	}
-	glfwDestroyWindow(window);
-	glfwTerminate();
-	exit(EXIT_SUCCESS);
 }
 
 int main(){
-	run(init());
+
+	init();
+	draw();
+	run();
+	quit();
 }
