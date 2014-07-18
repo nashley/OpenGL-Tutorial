@@ -86,12 +86,14 @@ int run(){
 /*
 	Shutdown and quit the program
 */
-void quit(){
+int quit(){
 
 	printf("Exiting...\n");
 	glfwDestroyWindow(window);
 	glfwTerminate();
 	exit(EXIT_SUCCESS);
+
+	return 0;
 }
 
 int main(){
@@ -99,5 +101,5 @@ int main(){
 	init();
 	draw();
 	run();
-	quit();
+	return quit();
 }
